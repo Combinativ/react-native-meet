@@ -39,6 +39,7 @@ import Toast from 'react-native-toast-message';
 
 import 'fastestsmallesttextencoderdecoder';
 import { Track } from 'livekit-client';
+// import { useParticipants } from '../node_modules/@livekit/react-native/lib/typescript/hooks';
 
 export const RoomPage = ({
   navigation,
@@ -48,6 +49,8 @@ export const RoomPage = ({
 
   useEffect(() => {
     let start = async () => {
+      console.log("Token: ", token);
+      
       await AudioSession.startAudioSession();
     };
 
@@ -116,6 +119,7 @@ const RoomView = ({ navigation }: RoomViewProps) => {
     { onlySubscribed: false }
   );
   const stableTracks = useVisualStableUpdate(tracks, 5);
+  // const participantList = useParticipants()
   // Setup views.
   const stageView = tracks.length > 0 && (
     <ParticipantView trackRef={stableTracks[0]} style={styles.stage} />
@@ -242,7 +246,11 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   otherParticipantsList: {
+    // top: 40,
+    // right: 50,
+    // left: 10,
     width: '100%',
+    // position:"relative",
     height: 150,
     flexGrow: 0,
   },
